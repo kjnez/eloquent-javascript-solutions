@@ -1,0 +1,51 @@
+<table>
+  <tr>
+    <th>name</th>
+    <th>height</th>
+    <th>place</th>
+  </tr>
+  <tr>
+    <td>Kilimanjaro</td>
+    <td>5895</td>
+    <td>Tanzania</td>
+  </tr>
+</table>
+
+<div id="mountains"></div>
+<script>
+  let mountains = [
+    {name: "Himalaya", height: 9804, place: "China"},
+    {name: "Fuki", height: 3455, place: "Japan"},
+  ];
+  let table = document.createElement("table");
+  let header_row = document.createElement("tr");
+  for (let header in mountains[0]) {
+    let th = document.createElement("th");
+    th.appendChild(document.createTextNode(header));
+    header_row.appendChild(th);
+  };
+  table.appendChild(header_row);
+
+  for (let mountain of mountains) {
+    let row = document.createElement("tr");
+    for (const property in mountain) {
+      let td = document.createElement("td");
+      td.appendChild(document.createTextNode(mountain[property]));
+      if (property === "height") {
+        td.classList.add("height");
+      };
+      row.appendChild(td);
+    };
+    table.appendChild(row);
+  };
+
+  console.log(table);
+
+  let mountain_table = document.querySelector("#mountains");
+  mountain_table.appendChild(table);
+
+  let heights = document.querySelectorAll(`.height`);
+  for (let height of heights) {
+    height.style.textAlign = "right";
+  }
+</script>
